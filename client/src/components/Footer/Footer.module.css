@@ -1,0 +1,20 @@
+.footerText {
+    border-top: solid 1px rgb(219, 219, 219);
+    width: 100%;
+    margin: 0px auto;
+    text-align: center;
+    padding: 25px;
+    text-align: center;
+    background-color: #EEEEEE;
+  }
+
+.footerText {
+  font-size: 34px; /* Adjust as needed */
+  font-weight: bold;
+  background: linear-gradient(90deg, rgb(226, 7, 43), rgb(31, 31, 218)); /* Pink to blue gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Makes the gradient visible */
+  background-clip: text;
+ 
+
+}

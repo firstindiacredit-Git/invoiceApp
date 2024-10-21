@@ -1,0 +1,93 @@
+.pageContainer {
+  /* margin-top: -4rem; */
+  font-size: 1rem;
+  /* height: calc(100vh - 152px); */
+  overflow: hidden; /* Hides scrollbar */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 2rem;
+  background-color: white;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+}
+
+.login {
+  border: 1px solid rgb(51, 51, 216);
+  padding: 12px 30px;
+  border-radius: 50px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 15px;
+  outline: none;
+  margin-right: 20px;
+}
+
+.hero {
+  width: 40vw;
+  margin: auto;
+  margin-top: 60px;
+  line-height: 10px;
+  margin-bottom: -20px;
+}
+
+.hero h1 {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.paragraph {
+  text-align: center;
+  line-height: 20px;
+  color: gray;
+}
+
+.imgContainer {
+  margin-top: -40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero img {
+  width: 50vw;
+  margin: 0px auto;
+}
+
+.footerText {
+  border-top: solid 1px rgb(219, 219, 219);
+  width: 80%;
+  margin: 0px auto;
+  text-align: center;
+  padding: 25px;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .hero {
+    width: 80%;
+  }
+
+  .hero img {
+    width: 400px;
+    margin: 70px auto;
+  }
+}
+
+/* Hide scrollbar but allow scrolling */
+.pageContainer {
+  overflow: scroll;
+  scrollbar-width: none; /* Firefox */
+}
+
+.pageContainer::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
