@@ -40,6 +40,7 @@ const Settings = () => {
     dispatch(
       getProfilesByUser({ search: user?.result?._id || user?.result.googleId })
     );
+    // eslint-disable-next-line
   }, [location, switchEdit, dispatch]);
 
   const handleSubmit = (e) => {
