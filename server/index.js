@@ -59,26 +59,31 @@ app.post("/send-pdf", (req, res) => {
   const htmlContent = pdfTemplate(req.body);
   const dynamicOptions = calculateDynamicPageSize(htmlContent.length);
 
-  // Create PDF in memory (buffer)
-  pdf.create(htmlContent, dynamicOptions).toBuffer((err, buffer) => {
+  // Create PDF with dynamic options
+  pdf.create(htmlContent, dynamicOptions).toFile("invoice.pdf", (err) => {
     if (err) {
-      return res.status(500).send({ error: "Failed to create PDF" });
+      return res.send(Promise.reject());
     }
 
-    // Send the email with the PDF attachment
+    // Send email with the generated PDF
     transporter.sendMail(
       {
-        from: `${company.businessName || company.name} <info@pizeonfly.com>`,
-        to: email,
-        replyTo: company.email,
-        subject: `Invoice from ${company.businessName || company.name}`,
-        text: `Invoice from ${company.businessName || company.name}`,
+        from: `${
+          company.businessName ? company.businessName : company.name
+        } <info@pizeonfly.com>`,
+        to: `${email}`,
+        replyTo: `${company.email}`,
+        subject: `Invoice from ${
+          company.businessName ? company.businessName : company.name
+        }`,
+        text: `Invoice from ${
+          company.businessName ? company.businessName : company.name
+        }`,
         html: emailTemplate(req.body),
         attachments: [
           {
             filename: "invoice.pdf",
-            content: buffer, // Attach the buffer instead of the file
-            contentType: "application/pdf",
+            path: `${__dirname}/invoice.pdf`,
           },
         ],
       },
@@ -91,7 +96,6 @@ app.post("/send-pdf", (req, res) => {
     );
   });
 });
-
 
 // CREATE AND SEND PDF INVOICE
 app.post("/create-pdf", (req, res) => {
