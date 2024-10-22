@@ -102,16 +102,12 @@ app.post("/create-pdf", (req, res) => {
   const htmlContent = pdfTemplate(req.body);
   const dynamicOptions = calculateDynamicPageSize(htmlContent.length);
 
-  // Create PDF in memory (using a buffer)
-  pdf.create(htmlContent, dynamicOptions).toBuffer((err, buffer) => {
+  // Create PDF with dynamic options
+  pdf.create(htmlContent, dynamicOptions).toFile("invoice.pdf", (err) => {
     if (err) {
-      return res.status(500).send({ error: "Failed to create PDF" });
+      return res.send(Promise.reject());
     }
-
-    // Send the PDF buffer back in response
-    res.setHeader("Content-Type", "application/pdf");
-    res.setHeader("Content-Disposition", 'attachment; filename="invoice.pdf"');
-    res.send(buffer);
+    res.send(Promise.resolve());
   });
 });
 
