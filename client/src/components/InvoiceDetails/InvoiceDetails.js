@@ -120,7 +120,7 @@ const InvoiceDetails = () => {
   const createAndDownloadPdf = () => {
     setDownloadStatus('loading')
     axios
-      .post(`${process.env.REACT_APP_API}/create-pdf`, {
+      .post(`${process.env.REACT_APP_API}create-pdf`, {
         name: invoice.client.name,
         address: invoice.client.address,
         phone: invoice.client.phone,
@@ -158,7 +158,7 @@ const InvoiceDetails = () => {
   const sendPdf = (e) => {
     e.preventDefault()
     setSendStatus('loading')
-    axios.post(`${process.env.REACT_APP_API}/send-pdf`, 
+    axios.post(`${process.env.REACT_APP_API}send-pdf`, 
     { name: invoice.client.name,
       address: invoice.client.address,
       phone: invoice.client.phone,
