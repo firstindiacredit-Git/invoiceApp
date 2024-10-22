@@ -4,30 +4,25 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import pdf from "html-pdf";
- 
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
 import invoiceRoutes from "./routes/invoices.js";
 import clientRoutes from "./routes/clients.js";
 import userRoutes from "./routes/userRoutes.js";
 import profile from "./routes/profile.js";
 import pdfTemplate from "./documents/index.js";
 import emailTemplate from "./documents/email.js";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
- 
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
 const app = express();
 dotenv.config();
 
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
-app.use(
-  cors({
-    origin: "*", // Allows all origins
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use("/invoices", invoiceRoutes);
 app.use("/clients", clientRoutes);
@@ -128,7 +123,7 @@ app.get("/", (req, res) => {
 
 // DATABASE CONNECTION AND SERVER START
 const DB_URL = process.env.DB_URL;
-const PORT = process.env.PORT || 5600;
+const PORT = process.env.PORT || 5000;
 
 mongoose
   .connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
