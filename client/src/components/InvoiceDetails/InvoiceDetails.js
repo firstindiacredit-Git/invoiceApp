@@ -141,7 +141,7 @@ const InvoiceDetails = () => {
         company: company,
       })
       .then(() =>
-        axios.get(`${process.env.REACT_APP_API}/fetch-pdf`, {
+        axios.get(`${process.env.REACT_APP_API}fetch-pdf`, {
           responseType: "blob",
         })
       )
