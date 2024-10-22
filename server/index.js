@@ -19,7 +19,23 @@ dotenv.config();
 
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors('*'));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests from specific frontend domain
+      if (
+        !origin ||
+        origin.includes("https://pizeonflyinvoiceapp.vercel.app")
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 
 app.use("/invoices", invoiceRoutes);
 app.use("/clients", clientRoutes);
