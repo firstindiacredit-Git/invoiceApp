@@ -4,9 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import pdf from "html-pdf";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
+ 
 import invoiceRoutes from "./routes/invoices.js";
 import clientRoutes from "./routes/clients.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -14,8 +12,7 @@ import profile from "./routes/profile.js";
 import pdfTemplate from "./documents/index.js";
 import emailTemplate from "./documents/email.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+ 
 
 const app = express();
 dotenv.config();
