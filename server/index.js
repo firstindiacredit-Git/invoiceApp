@@ -120,7 +120,7 @@ app.get("/", (req, res) => {
 
 // DATABASE CONNECTION AND SERVER START
 const DB_URL = process.env.DB_URL;
-const PORT = process.env.PORT || 5500;
+const PORT = process.env.PORT || 5600;
 
 mongoose
   .connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
